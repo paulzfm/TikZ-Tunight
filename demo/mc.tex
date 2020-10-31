@@ -1,7 +1,7 @@
 \usetikzlibrary{automata}
 \tikzstyle{mcstate} = [state, fill=gray!20!white]
 
-\begin{tikzpicture}[draw=Green, very thick, >=latex', auto=right]
+\begin{tikzpicture}[draw=Green, very thick, >=latex', auto]
     \node [mcstate]                 (s4) {4};
     \node [mcstate, right=of s4]    (s1) {1};
     \node [mcstate, below=of s4]    (s2) {2};
@@ -16,8 +16,8 @@
         (s1) edge             node {1} (s3)
         (s3) edge [above]     node {1} (s5)
         (s5) edge             node {1} (s1)
-        (s2) edge [bend right] node {1} (s6)
-        (s6) edge [bend right] node {1/2} (s2)
+        (s2) edge [bend left] node {1} (s6)
+        (s6) edge [bend left] node {1/2} (s2)
         (s6) edge [loop right] node {1/2} (s6)
     ;
 \end{tikzpicture}

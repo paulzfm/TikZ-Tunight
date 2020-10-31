@@ -2,7 +2,7 @@
 \tikzstyle{red place} = [place, draw=red!75, fill=red!20]
 \tikzstyle{red transition} = [transition, semithick, draw=red!75, fill=red!20]
 
-\begin{tikzpicture}[auto, node distance=3em, >=stealth', every loop, bend angle=30]
+\begin{tikzpicture}[node distance=3em, >=stealth', bend angle=30, every loop]
     \node [place, tokens=1, label=$p_1$] (p1) 				{};
     \node [transition, label=$t_1$] 	 (t1) [right=of p1] {};
     \node [place, label=$p_2$] 			 (p2) [right=of t1] {};
