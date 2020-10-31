@@ -1,0 +1,35 @@
+\begin{forest}
+    for tree={align=center}
+    [\t{MethodDef}
+        [...]
+        [\t{Type}
+            [{\t{VOID} \\ ``\t{void}''}]
+        ]
+        [...]
+        [\t{MethodBody}
+            [\t{StmtList}
+                [\t{Stmt}
+                    [\t{LocalVarDecl}
+                        [\t{Type}
+                            [\t{BaseType}
+                                [{\t{FLOAT}\\``\t{float}''}]
+                            ]
+                        ]
+                        [\t{VarDecl}
+                            [{\t{ID}\\``\t{SommeCar}''}]
+                            [...]
+                        ]
+                    ]
+                ]
+                [\t{Stmt}
+                    [\t{ReturnStmt}, tikz={
+                        \node [draw=red, rounded corners, fit to=tree,inner sep=0] {};
+                     }
+                        [{\t{RETURN}\\``\t{return}''}]
+                        [{\t{ID}\\``\t{SommeCar}''}]
+                    ]
+                ]
+            ]
+        ]
+    ]
+\end{forest}

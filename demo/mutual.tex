@@ -1,0 +1,7 @@
+\tikzstyle{my node1} = [state, thick, my node2]
+\tikzstyle{my node2} = [my node1, orange]
+
+\begin{tikzpicture}
+    \node [my node1] (x) {$x$};
+    \node [my node2, right=of x] {$y$};
+\end{tikzpicture}

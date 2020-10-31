@@ -1,0 +1,15 @@
+\tikzstyle{executed} = [circle, draw=black, fill=gray]
+
+\begin{tikzpicture}
+    \node (i1) {ST};
+    \node [below=of i1] (i2) {LD};
+    \node [right=of i2] (x1) {};
+    \node [right=of x1] (x) {Memory};
+    \node [executed, below=of x] (d2) {};
+    \node [executed, below=of d2] (d1) {};
+    \node [below=of d1] (y) {};
+
+    \draw [->] (i1) -- (d1);
+    \draw [->] (i2) -- (d2);
+    \draw [dashed,-] (x) -- (y);
+\end{tikzpicture}

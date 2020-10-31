@@ -1,0 +1,57 @@
+\tikzstyle{scc node} = [state, fill=gray!20!white]
+
+\begin{tikzpicture}[every loop, auto=left, very thick, >=latex, draw=Blue, fill=Blue]
+    \begin{scope}[local bounding box=scc]
+        \node [scc node, initial]        (s0) {$s_0$};
+        \node [scc node, right=of s0]    (s1) {$s_1$};
+        \draw
+            (s0) edge [bend left] node {0.5} (s1)
+            (s1) edge [bend left] node {0.5} (s0)
+            ;
+        \begin{pgfonlayer}{background}
+            \path[fill=blue!20,draw=blue,dashed,thick,rounded corners]
+                (scc.south west) rectangle
+                ($(scc.north east) + (0.2cm,0cm)$);
+        \end{pgfonlayer}
+    \end{scope}
+
+    \begin{scope}[local bounding box=bscc1]
+        \node[scc node, right=2.5cm of s1, label=right:$\{d\}$]    (s2) {$s_2$};
+        \node[scc node, below=of s2, label=right:$\{c\}$]    (s5) {$s_5$};
+        \draw
+            (s2) edge [bend left] node {1} (s5)
+            (s5) edge [bend left] node {1} (s2)
+            ;
+        \begin{pgfonlayer}{background}
+            \path[fill=red!20,draw=red,dashed,thick,rounded corners]
+                ($(bscc1.south west) - (0cm,0.2cm)$) rectangle
+                ($(bscc1.north east) + (0cm,0.2cm)$);
+        \end{pgfonlayer}
+    \end{scope}
+
+    \begin{scope}[local bounding box=bscc2]
+        \node[scc node, below=1.3cm of s0, label=left:$\{b\}$]    (s3) {$s_3$};
+        \draw (s3) edge [loop below] node {1} (s3);
+        \begin{pgfonlayer}{background}
+            \path[fill=red!20,draw=red,dashed,thick,rounded corners]
+                (bscc2.south west) rectangle
+                ($(bscc2.north east) + (0.2cm,0.2cm)$);
+        \end{pgfonlayer}
+    \end{scope}
+
+    \begin{scope}[local bounding box=bscc3]
+        \node[scc node, below=1.3cm of s1, label=right:$\{b\}$]    (s4) {$s_4$};
+        \draw (s4) edge [loop below] node {1} (s4);
+        \begin{pgfonlayer}{background}
+            \path[fill=red!20,draw=red,dashed,thick,rounded corners]
+                ($(bscc3.south west) - (0.2cm,0cm)$) rectangle
+                ($(bscc3.north east) + (0cm,0.2cm)$);
+        \end{pgfonlayer}
+    \end{scope}
+
+    \draw
+        (s1) edge node {0.25} (s2)
+        (s1) edge node {0.25} (s4)
+        (s0) edge node {0.5} (s3)
+    ;
+\end{tikzpicture}

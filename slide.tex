@@ -1,0 +1,204 @@
+% !TEX program = xelatex
+\documentclass[usenames,xcolor=svgnames,11pt,sans,handout]{beamer}
+% \documentclass[usenames,xcolor=svgnames,11pt,sans,aspectratio=169]{beamer}
+\usetheme{Madrid}
+\colorlet{theme}{DarkGreen}
+\usecolortheme[named=theme]{structure}
+\newcommand{\key}[1]{{\color{theme} #1}}
+
+\usepackage{xeCJK}
+\setCJKmainfont{SimHei}
+\usepackage[T1]{fontenc}
+\usepackage{zi4}
+
+\usepackage{listings}
+\lstset{
+    language=[LaTeX]TeX,
+    xleftmargin=2em,
+    keywordstyle=\color{theme},
+    basicstyle=\ttfamily,
+    basewidth={.5em,.5em},
+    escapeinside={<@}{@>}
+}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows, shapes, shapes.multipart, backgrounds, calc, automata}
+\usepackage{tikz-cd} % for demo/cd.tex
+\usepackage{forest} % for demo/ast.tex
+
+\let\t\texttt
+\newcommand{\optional}{$^{\color{theme} ?}$}
+
+\begin{document}
+
+% credits
+\title{Ti$k$Z 画“图”指南}
+\subtitle{（从用户的角度出发）}
+\author{Paul}
+\date{2020-10-31}
+
+% contents
+\AtBeginSection[]
+{
+    \begin{frame}{目录}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+\AtBeginSubsection[]
+{
+    \begin{frame}{目录}
+        \tableofcontents[currentsubsection]
+	\end{frame}
+}
+
+% titlepage
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \begin{center}\Large
+        这是一个\key{技术}和\key{非技术}报告
+    \end{center}
+\end{frame}
+
+\section{Ti$k$Z 是啥}
+
+\begin{frame}
+    \frametitle{口号}
+
+    \begin{quote}\Large
+        Ti$k$Z ist kein Zeichenprogramm.
+
+        \rightline{-- by Till Tantau}
+    \end{quote}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ti$k$Z 能干啥}
+
+    \begin{itemize}
+        \item 画（计算机科学里的）树
+        \item 画（计算机科学里的）图
+        \item 画统计图、曲线图
+        \item 画三维图形
+        \item 画思维导图
+        \item ……
+    \end{itemize}
+
+    \pause
+    \vspace{20pt}
+    \begin{center}\Large\color{theme}
+        “Ti$k$Z 画不出来的图，就是不需要画的图”
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{常见问题}
+
+    \begin{itemize}
+        \item 我用 \LaTeX 排版，是不是所有图都要用 Ti$k$Z 画？
+        \pause
+        \item Ti$k$Z 和专业作图软件 MS Word/Powerpoint 等相比，谁更好用？
+        \pause
+        \item Ti$k$Z 和专业统计软件 MS Excel, Python 等相比，谁更好用？
+    \end{itemize}
+
+    \pause
+    \vspace{20pt}
+    It's up to you: \t{ppt.tex}, or \t{beamer.pptx}, or whatever!
+\end{frame}
+
+\begin{frame}
+    \frametitle{学习资料}
+
+    \begin{itemize}
+        \item \t{texdoc tikz}
+        \item \url{https://texample.net/tikz/examples/}
+    \end{itemize}
+\end{frame}
+
+\section{例子，例子}
+
+\begin{frame}
+    \frametitle{Total Store Order}
+
+    \centering\input{demo/tso.tex}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{基本语法}
+
+    \begin{lstlisting}
+\node [选项]<@\optional@> (名称)<@\optional@> {文本};
+
+\draw [选项]<@\optional@> (起点名称) 连接方式 (终点名称);
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Markov Chain}
+
+    \centering\input{demo/mc.tex}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Strongly Connected Component}
+
+    \centering\input{demo/scc.tex}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Petri Net}
+
+    \centering\input{demo/petri.tex}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Commutative Diagram\footnote{\url{https://tex.stackexchange.com/questions/468894/diagrams-in-category-theory}}}
+
+    \centering\input{demo/cd.tex}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cycle\footnote{\url{https://texample.net/tikz/examples/cycle/}}}
+
+    \centering\input{demo/cycle.tex}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Parse Tree}
+
+    \begin{center}
+        \footnotesize\input{demo/ast.tex}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Process}
+
+    \centering\input{demo/proc.tex}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Mutual References}
+
+    \lstinputlisting{demo/mutual.tex}
+
+    \begin{center}
+        % \input{demo/mutual.tex}        
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Repo}
+
+    \centering\Large
+    
+    \url{https://github.com/paulzfm/TikZ-Tunight}
+
+    Check the \key{main} branch!
+\end{frame}
+
+\end{document}

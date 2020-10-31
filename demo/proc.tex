@@ -1,0 +1,27 @@
+\tikzstyle{io} = [rectangle, text centered, text width=7em, fill=green!20]
+\tikzstyle{proc} = [rectangle, fill=blue!20, text width=7em, text centered, rounded corners]
+\tikzstyle{decision} = [diamond, fill=blue!20, text centered, aspect=2]
+\tikzstyle{entity} = [text centered, text width=8em, fill=red!20]
+\tikzstyle{line} = [draw, -latex']
+
+\begin{tikzpicture}[auto, every text node part/.style={align=center}, every path/.style={->}]
+    \node [io] (grammar) {(refined) grammar};
+    \node [decision, below=of grammar] (ambig) {ambiguous?};
+    \node [below right=.5 and .5 of ambig] (stop) {done};
+    \node [proc, below=of ambig] (gen) {ambiguous word generator};
+    \node [proc, right=of ambig] (synt) {grammar refinement};
+    \node [entity, right=4.3 of gen] (select) {user interaction};
+    \node [entity, right=4.3 of grammar] (input) {initial grammar};
+    \node [below=.25 of select, red] {user};
+
+    \path [line, red, thick] (input) -- node [above] {input} (grammar);
+    \path [line] (grammar) -- (ambig);
+    \path [line] (ambig.east) -| node {no} (stop);
+    \path [line] (ambig) -- node {yes} (gen);
+    \path [line] (gen) -- node [below] {ambiguous word \& \\ parse trees} (select);
+    \path [line, red, thick] (select) -- node {feedback} (synt);
+    \path [line] (synt) -- node [right] {add layout \\ \qquad restrictions} (grammar);
+    % Draw user rectangle
+    \draw [red, thick, dashed, rounded corners]
+        ($(select.south east)+(.25,-.25)$) rectangle ($(input.north west)+(-.25,.25)$);
+\end{tikzpicture}

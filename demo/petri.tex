@@ -1,0 +1,36 @@
+\usetikzlibrary{petri}
+\tikzstyle{red place} = [place, draw=red!75, fill=red!20]
+\tikzstyle{red transition} = [transition, thick, draw=red!75, fill=red!20]
+
+\begin{tikzpicture}[auto, node distance=3em, >=stealth', bend angle=30]
+    \node [place, tokens=1, label=$p_1$] (p1) 				{};
+    \node [transition, label=$t_1$] 	 (t1) [right=of p1] {};
+    \node [place, label=$p_2$] 			 (p2) [right=of t1] {};
+    \node [transition, label=right:$t_2$] 	 (t2) [right=of p2] {};
+    \node [red place, label=$p_3$]	 (p3) [above=of t2] {};
+    \node [red place, tokens=2, label=below:$p_4$] (p4) [below=of t2] {};
+    \node [red transition, label=$t_4$] 	 (t4) [right=of t2] {};
+    \node [red place, tokens=1, label=$p_5$] (p5) [right=of t4] {};
+    \node [transition, label=$t_3$]      (t3) [right=of p4] {};
+
+    \draw [->]
+        (p1) edge (t1)
+        (t1) edge [bend left] (p3)
+        (t1) edge (p2)
+        (t1) edge [bend left=5] (p4)
+        (t1) edge [bend right=5] (p4)
+        (p2) edge [bend right] (t2)
+        (t2) edge [bend right] (p2)
+        (p3) edge (t2)
+        (p4) edge (t2)
+        (p4) edge [bend left=10] (t3)
+        (p4) edge [bend right=10] (t3)
+        (t3) edge (p5)
+    ;
+
+    \draw [->, draw=red!75, fill=red!75]
+        (t4) edge [bend left] (p3)
+        (t4) edge [bend right] (p4)
+        (p5) edge (t4)
+    ;
+\end{tikzpicture}
