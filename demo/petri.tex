@@ -1,8 +1,8 @@
 \usetikzlibrary{petri}
 \tikzstyle{red place} = [place, draw=red!75, fill=red!20]
-\tikzstyle{red transition} = [transition, thick, draw=red!75, fill=red!20]
+\tikzstyle{red transition} = [transition, semithick, draw=red!75, fill=red!20]
 
-\begin{tikzpicture}[auto, node distance=3em, >=stealth', bend angle=30]
+\begin{tikzpicture}[auto, node distance=3em, >=stealth', every loop, bend angle=30]
     \node [place, tokens=1, label=$p_1$] (p1) 				{};
     \node [transition, label=$t_1$] 	 (t1) [right=of p1] {};
     \node [place, label=$p_2$] 			 (p2) [right=of t1] {};
@@ -13,7 +13,7 @@
     \node [red place, tokens=1, label=$p_5$] (p5) [right=of t4] {};
     \node [transition, label=$t_3$]      (t3) [right=of p4] {};
 
-    \draw [->]
+    \draw
         (p1) edge (t1)
         (t1) edge [bend left] (p3)
         (t1) edge (p2)
@@ -28,7 +28,7 @@
         (t3) edge (p5)
     ;
 
-    \draw [->, draw=red!75, fill=red!75]
+    \draw [draw=red!75, fill=red!75]
         (t4) edge [bend left] (p3)
         (t4) edge [bend right] (p4)
         (p5) edge (t4)

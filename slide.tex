@@ -1,6 +1,6 @@
 % !TEX program = xelatex
-\documentclass[usenames,xcolor=svgnames,11pt,sans,handout]{beamer}
-% \documentclass[usenames,xcolor=svgnames,11pt,sans,aspectratio=169]{beamer}
+% \documentclass[usenames,xcolor=svgnames,11pt,sans,handout]{beamer}
+\documentclass[usenames,xcolor=svgnames,11pt,sans]{beamer}
 \usetheme{Madrid}
 \colorlet{theme}{DarkGreen}
 \usecolortheme[named=theme]{structure}
@@ -10,6 +10,8 @@
 \setCJKmainfont{SimHei}
 \usepackage[T1]{fontenc}
 \usepackage{zi4}
+
+\usepackage{siunitx}
 
 \usepackage{listings}
 \lstset{
@@ -110,15 +112,6 @@
     It's up to you: \t{ppt.tex}, or \t{beamer.pptx}, or whatever!
 \end{frame}
 
-\begin{frame}
-    \frametitle{学习资料}
-
-    \begin{itemize}
-        \item \t{texdoc tikz}
-        \item \url{https://texample.net/tikz/examples/}
-    \end{itemize}
-\end{frame}
-
 \section{例子，例子}
 
 \begin{frame}
@@ -144,27 +137,52 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Strongly Connected Component}
-
-    \centering\input{demo/scc.tex}
-\end{frame}
-
-\begin{frame}
     \frametitle{Petri Net}
 
     \centering\input{demo/petri.tex}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Commutative Diagram\footnote{\url{https://tex.stackexchange.com/questions/468894/diagrams-in-category-theory}}}
+    \frametitle{Process}
 
-    \centering\input{demo/cd.tex}
+    \centering\input{demo/proc.tex}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Cycle\footnote{\url{https://texample.net/tikz/examples/cycle/}}}
+    \frametitle{常用选项}
 
-    \centering\input{demo/cycle.tex}
+    \begin{itemize}
+        \item 边框：\t{draw}，填充：\t{fill}
+        \item 颜色、粗细、线型：使用“形容词”
+        \item 位置：\t{below}, \t{above}, \t{left}, \t{right}
+        \item 结点标签：\t{label}
+        \item 自动控制箭头标注的位置：\t{auto}
+        \item 箭头类型：\t{<start tip>-<end tip>}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{长度单位}
+
+    除了普通人都知道的（如 \si{cm}）以外，还可能用到：
+    \begin{itemize}
+        \item \si{pt} (\SI{1}{pt} = \SI{0.351}{mm})
+        \item \si{in} (\SI{1}{in} = \SI{25.4}{mm})
+        \item \si{em}（当前字体中 M 的宽度）
+        \item \si{ex}（当前字体中 x 的高度）
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Strongly Connected Component}
+
+    \centering\input{demo/scc.tex}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Commutative Diagram\footnote{\url{https://tex.stackexchange.com/questions/468894/diagrams-in-category-theory}}}
+
+    \centering\input{demo/cd.tex}
 \end{frame}
 
 \begin{frame}
@@ -176,9 +194,20 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Process}
+    \frametitle{调库}
 
-    \centering\input{demo/proc.tex}
+    \begin{itemize}
+        \item 常用：\t{positioning, arrows, shapes}
+        \item 坐标计算：\t{calc}
+        \item 领域特定：\t{automata}, \t{petri}, \t{circuit}, \t{matrix}
+        \item 扩展性的宏包：\t{forest}, \t{tikz-cd}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Matrix\footnote{从官方文档中截取的例子}}
+
+    \centering\input{demo/matrix.tex}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -191,6 +220,29 @@
     \end{center}
 \end{frame}
 
+\section{总结}
+
+\begin{frame}
+    \frametitle{学习资料}
+
+    \begin{itemize}
+        \item \t{texdoc tikz}
+        \item \url{https://texample.net/tikz/examples/}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ti$k$Z 使用技巧}
+
+    \begin{itemize}
+        \item 写代码前手画草图
+        \pause
+        \item 错误信息有时候有用，没用的时候看看是不是语法错了
+        \pause
+        \item 方向不对，多试几次
+    \end{itemize}
+\end{frame}
+
 \begin{frame}
     \frametitle{Repo}
 
@@ -198,6 +250,7 @@
     
     \url{https://github.com/paulzfm/TikZ-Tunight}
 
+    \vspace{10pt}
     Check the \key{main} branch!
 \end{frame}
 
